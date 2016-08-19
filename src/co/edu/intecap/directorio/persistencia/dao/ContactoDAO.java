@@ -122,4 +122,19 @@ public class ContactoDAO {
         }
         return miContacto;
     }
+    
+    public void elmininar(Contacto entidad){
+        try {
+            String sql= "delete from contacto where id_contacto=?";
+            PreparedStatement sentencia = cnn.prepareStatement(sql);
+            sentencia.setLong(1,entidad.getIdContacto());
+            sentencia.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar");
+            e.printStackTrace(System.err);
+        }finally{
+            ConexionBD.desconectar(cnn);
+        }
+        
+    }
 }
