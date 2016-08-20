@@ -29,12 +29,11 @@ public class TipoContactoDAO {
     public void insertar(TipoContacto entidad){
     
         try {
-            String sql = "INSERT INTO tipocontacto(id_tipo_contacto,nombre,estado)"
-                         + " VALUES(?,?,?)";
+            String sql = "INSERT INTO tipo_contacto(nombre,estado)"
+                         + " VALUES(?,?)";
             PreparedStatement sentencia = cnn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            sentencia.setLong(1, entidad.getIdTipoContacto());
-            sentencia.setString(2,entidad.getNombre());
-            sentencia.setBoolean(3, entidad.isEstado());
+            sentencia.setString(1,entidad.getNombre());
+            sentencia.setBoolean(2, entidad.isEstado());
             sentencia.executeUpdate();
             ResultSet resultado = sentencia.getGeneratedKeys();
             if (resultado.next()) {
